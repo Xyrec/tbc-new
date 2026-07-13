@@ -61,6 +61,10 @@ export const simLaunchStatuses: Record<Spec, SimStatus> = {
 		phase: Phase.Phase2,
 		status: LaunchStatus.Alpha,
 	},
+	[Spec.SpecFrostMage]: {
+		phase: Phase.Phase2,
+		status: LaunchStatus.Alpha,
+	},
 	// Paladin
 	[Spec.SpecHolyPaladin]: {
 		phase: Phase.Phase2,

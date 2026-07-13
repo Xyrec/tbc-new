@@ -22,7 +22,8 @@
 		},
 		"mage": {
 			"arcane": "Arcane",
-			"fire": "Fire"
+			"fire": "Fire",
+			"frost": "Frost"
 		},
 		"paladin": {
 			"holy": "Holy",

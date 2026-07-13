@@ -75,3 +75,38 @@ export class FireMage extends PlayerSpec<Spec.SpecFireMage> {
 	};
 }
 
+export class FrostMage extends PlayerSpec<Spec.SpecFrostMage> {
+	static specIndex = 2;
+	static specID = Spec.SpecFrostMage as Spec.SpecFrostMage;
+	static classID = Class.ClassMage as Class.ClassMage;
+	static friendlyName = 'Frost';
+	static simLink = getSpecSiteUrl('mage', 'frost');
+
+	static isTankSpec = false;
+	static isHealingSpec = false;
+	static isRangedDpsSpec = true;
+	static isMeleeDpsSpec = false;
+
+	static canDualWield = false;
+
+	readonly specIndex = FrostMage.specIndex;
+	readonly specID = FrostMage.specID;
+	readonly classID = FrostMage.classID;
+	readonly friendlyName = FrostMage.friendlyName;
+	readonly simLink = FrostMage.simLink;
+
+	readonly isTankSpec = FrostMage.isTankSpec;
+	readonly isHealingSpec = FrostMage.isHealingSpec;
+	readonly isRangedDpsSpec = FrostMage.isRangedDpsSpec;
+	readonly isMeleeDpsSpec = FrostMage.isMeleeDpsSpec;
+
+	readonly canDualWield = FrostMage.canDualWield;
+
+	static getIcon = (size: IconSize): string => {
+		return `https://wow.zamimg.com/images/wow/icons/${size}/spell_frost_frostbolt02.jpg`;
+	};
+
+	getIcon = (size: IconSize): string => {
+		return FrostMage.getIcon(size);
+	};
+}

@@ -229,6 +229,7 @@ export const specI18nKeys: Record<Spec, string> = {
 	// Mage
 	[Spec.SpecMage]: 'arcane',
 	[Spec.SpecFireMage]: 'fire',
+	[Spec.SpecFrostMage]: 'frost',
 	// Paladin
 	[Spec.SpecHolyPaladin]: 'holy',
 	[Spec.SpecProtectionPaladin]: 'protection',

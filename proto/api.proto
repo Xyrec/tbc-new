@@ -52,6 +52,7 @@ message Player {
 
 		Mage mage = 20;
 		FireMage fire_mage = 59;
+		FrostMage frost_mage = 60;
 
 		HolyPaladin holy_paladin = 21;
 		ProtectionPaladin protection_paladin = 22;

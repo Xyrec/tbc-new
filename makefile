@@ -13,6 +13,7 @@ PAGE_INDECES := ui/druid/balance/index.html \
 				ui/hunter/dps/index.html \
 				ui/mage/arcane/index.html \
 				ui/mage/fire/index.html \
+				ui/mage/frost/index.html \
 				ui/paladin/holy/index.html \
 				ui/paladin/protection/index.html \
 				ui/paladin/retribution/index.html \

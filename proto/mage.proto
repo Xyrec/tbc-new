@@ -115,3 +115,12 @@ message FireMage {
 	Options options = 1;
 }
 
+message FrostMage {
+	message Rotation {
+	}
+
+	message Options {
+		MageOptions class_options = 1;
+	}
+	Options options = 1;
+}

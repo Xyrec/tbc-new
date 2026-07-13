@@ -46,6 +46,9 @@ import {
 	FireMage,
 	FireMage_Options,
 	FireMage_Rotation,
+	FrostMage,
+	FrostMage_Options,
+	FrostMage_Rotation,
 	Mage,
 	Mage_Options,
 	Mage_Rotation,
@@ -153,7 +156,7 @@ class UnknownSpecOptions {
 
 export type DruidSpecs = Spec.SpecBalanceDruid | Spec.SpecFeralCatDruid | Spec.SpecFeralBearDruid | Spec.SpecRestorationDruid;
 export type HunterSpecs = Spec.SpecHunter;
-export type MageSpecs = Spec.SpecMage | Spec.SpecFireMage;
+export type MageSpecs = Spec.SpecMage | Spec.SpecFireMage | Spec.SpecFrostMage;
 export type PaladinSpecs = Spec.SpecHolyPaladin | Spec.SpecRetributionPaladin | Spec.SpecProtectionPaladin;
 export type PriestSpecs = Spec.SpecPriest;
 export type RogueSpecs = Spec.SpecRogue;
@@ -231,7 +234,9 @@ export type SpecRotation<T extends Spec> =
 							? Mage_Rotation
 							: T extends Spec.SpecFireMage
 								? FireMage_Rotation
-								: // Paladin
+								: T extends Spec.SpecFrostMage
+									? FrostMage_Rotation
+									: // Paladin
 								T extends Spec.SpecHolyPaladin
 								? HolyPaladin_Rotation
 								: T extends Spec.SpecProtectionPaladin
@@ -342,7 +347,9 @@ export type SpecOptions<T extends Spec> =
 							? Mage_Options
 							: T extends Spec.SpecFireMage
 								? FireMage_Options
-								: // Paladin
+								: T extends Spec.SpecFrostMage
+									? FrostMage_Options
+									: // Paladin
 								T extends Spec.SpecHolyPaladin
 								? HolyPaladin_Options
 								: T extends Spec.SpecProtectionPaladin
@@ -391,7 +398,9 @@ export type SpecType<T extends Spec> =
 							? Mage
 							: T extends Spec.SpecFireMage
 								? FireMage
-								: // Paladin
+								: T extends Spec.SpecFrostMage
+									? FrostMage
+									: // Paladin
 								T extends Spec.SpecHolyPaladin
 								? HolyPaladin
 								: T extends Spec.SpecProtectionPaladin
@@ -622,6 +631,29 @@ export const specTypeFunctions: Record<Spec, SpecTypeFunctions<any>> = {
 		optionsFromJson: obj => FireMage_Options.fromJson(obj),
 		optionsFromPlayer: player =>
 			player.spec.oneofKind == 'fireMage' ? player.spec.fireMage.options || FireMage_Options.create() : FireMage_Options.create({ classOptions: {} }),
+	},
+	[Spec.SpecFrostMage]: {
+		rotationCreate: () => FrostMage_Rotation.create(),
+		rotationEquals: (a, b) => FrostMage_Rotation.equals(a as FrostMage_Rotation, b as FrostMage_Rotation),
+		rotationCopy: a => FrostMage_Rotation.clone(a as FrostMage_Rotation),
+		rotationToJson: a => FrostMage_Rotation.toJson(a as FrostMage_Rotation),
+		rotationFromJson: obj => FrostMage_Rotation.fromJson(obj),
+
+		talentsCreate: () => MageTalents.create(),
+		talentsEquals: (a, b) => MageTalents.equals(a as MageTalents, b as MageTalents),
+		talentsCopy: a => MageTalents.clone(a as MageTalents),
+		talentsToJson: a => MageTalents.toJson(a as MageTalents),
+		talentsFromJson: obj => MageTalents.fromJson(obj),
+
+		optionsCreate: () => FrostMage_Options.create({ classOptions: {} }),
+		optionsEquals: (a, b) => FrostMage_Options.equals(a as FrostMage_Options, b as FrostMage_Options),
+		optionsCopy: a => FrostMage_Options.clone(a as FrostMage_Options),
+		optionsToJson: a => FrostMage_Options.toJson(a as FrostMage_Options),
+		optionsFromJson: obj => FrostMage_Options.fromJson(obj),
+		optionsFromPlayer: player =>
+			player.spec.oneofKind == 'frostMage'
+				? player.spec.frostMage.options || FrostMage_Options.create()
+				: FrostMage_Options.create({ classOptions: {} }),
 	},
 	// Paladin
 	[Spec.SpecHolyPaladin]: {
@@ -955,6 +987,14 @@ export function withSpec<SpecType extends Spec>(spec: Spec, player: PlayerProto,
 				oneofKind: 'fireMage',
 				fireMage: FireMage.create({
 					options: specOptions as FireMage_Options,
+				}),
+			};
+			return copy;
+		case Spec.SpecFrostMage:
+			copy.spec = {
+				oneofKind: 'frostMage',
+				frostMage: FrostMage.create({
+					options: specOptions as FrostMage_Options,
 				}),
 			};
 			return copy;

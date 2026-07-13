@@ -27,6 +27,7 @@ const specToPlayerSpec: Record<Spec, PlayerSpec<any> | undefined> = {
 	// Mage
 	[Spec.SpecMage]: MageSpecs.Mage,
 	[Spec.SpecFireMage]: MageSpecs.FireMage,
+	[Spec.SpecFrostMage]: MageSpecs.FrostMage,
 	// Paladin
 	[Spec.SpecHolyPaladin]: PaladinSpecs.HolyPaladin,
 	[Spec.SpecProtectionPaladin]: PaladinSpecs.ProtectionPaladin,
