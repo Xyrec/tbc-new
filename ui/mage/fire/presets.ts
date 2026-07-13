@@ -53,19 +53,19 @@ export const P1_EP_PRESET = PresetUtils.makePresetEpWeights(
 	Stats.fromMap(
 		{
 			[Stat.StatMana]: 0,
-			[Stat.StatIntellect]: 0.22,
+			[Stat.StatIntellect]: 0.34,
 			[Stat.StatSpirit]: 0.11,
 			[Stat.StatSpellDamage]: 1,
 			[Stat.StatFireDamage]: 1,
 			[Stat.StatFrostDamage]: 0,
-			[Stat.StatSpellHitRating]: 1.7,
-			[Stat.StatSpellCritRating]: 0.46,
-			[Stat.StatSpellHasteRating]: 1.2,
+			[Stat.StatSpellHitRating]: 1.77,
+			[Stat.StatSpellCritRating]: 0.85,
+			[Stat.StatSpellHasteRating]: 1.18,
 			[Stat.StatSpellPenetration]: 0,
-			[Stat.StatMP5]: 0.01,
+			[Stat.StatMP5]: 0.02,
 		},
 		{
-			[PseudoStat.PseudoStatSchoolHitPercentFire]: 1.7,
+			[PseudoStat.PseudoStatSchoolHitPercentFire]: 1.74,
 		},
 	),
 );
@@ -75,19 +75,19 @@ export const P2_EP_PRESET = PresetUtils.makePresetEpWeights(
 	Stats.fromMap(
 		{
 			[Stat.StatMana]: 0,
-			[Stat.StatIntellect]: 0.14,
+			[Stat.StatIntellect]: 0.26,
 			[Stat.StatSpirit]: 0.11,
 			[Stat.StatSpellDamage]: 1,
 			[Stat.StatFireDamage]: 1,
 			[Stat.StatFrostDamage]: 0,
-			[Stat.StatSpellHitRating]: 1.75,
-			[Stat.StatSpellCritRating]: 0.46,
-			[Stat.StatSpellHasteRating]: 1.35,
+			[Stat.StatSpellHitRating]: 1.84,
+			[Stat.StatSpellCritRating]: 0.84,
+			[Stat.StatSpellHasteRating]: 1.3,
 			[Stat.StatSpellPenetration]: 0,
 			[Stat.StatMP5]: 0,
 		},
 		{
-			[PseudoStat.PseudoStatSchoolHitPercentFire]: 1.71,
+			[PseudoStat.PseudoStatSchoolHitPercentFire]: 1.81,
 		},
 	),
 );
