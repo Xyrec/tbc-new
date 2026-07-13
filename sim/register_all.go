@@ -8,7 +8,7 @@ import (
 	restoDruid "github.com/wowsims/tbc/sim/druid/restoration"
 	_ "github.com/wowsims/tbc/sim/encounters"
 	"github.com/wowsims/tbc/sim/hunter"
-	"github.com/wowsims/tbc/sim/mage"
+	arcaneMage "github.com/wowsims/tbc/sim/mage/arcane"
 	holyPaladin "github.com/wowsims/tbc/sim/paladin/holy"
 	protPaladin "github.com/wowsims/tbc/sim/paladin/protection"
 	"github.com/wowsims/tbc/sim/paladin/retribution"
@@ -37,7 +37,7 @@ func RegisterAll() {
 
 	hunter.RegisterHunter()
 
-	mage.RegisterMage()
+	arcaneMage.RegisterArcaneMage()
 
 	holyPaladin.RegisterHolyPaladin()
 	protPaladin.RegisterProtectionPaladin()
