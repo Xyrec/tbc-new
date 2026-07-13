@@ -1,6 +1,6 @@
 import { EligibleWeaponType, IconSize, PlayerClass } from '../player_class';
 import { PlayerSpec } from '../player_spec';
-import { Mage as MageSpec } from '../player_specs/mage';
+import { FireMage as FireMageSpec, Mage as MageSpec } from '../player_specs/mage';
 import { ArmorType, Class, Race, RangedWeaponType, WeaponType } from '../proto/common';
 import { MageSpecs } from '../proto_utils/utils';
 
@@ -10,6 +10,7 @@ export class Mage extends PlayerClass<Class.ClassMage> {
 	static hexColor = '#69ccf0';
 	static specs: Record<string, PlayerSpec<MageSpecs>> = {
 		[MageSpec.friendlyName]: MageSpec,
+		[FireMageSpec.friendlyName]: FireMageSpec,
 	};
 	static races: Race[] = [
 		// [H]

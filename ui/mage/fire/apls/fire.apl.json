@@ -1,0 +1,22 @@
+{
+	"type": "TypeAPL",
+	"prepullActions": [
+		{"action":{"castSpell":{"spellId":{"spellId":27070}}},"doAtValue":{"const":{"val":"-3s"}}}
+	],
+	"priorityList": [
+		{"action":{"autocastOtherCooldowns":{}}},
+		{"action":{"condition":{"variableRef":{"name":"BurnPhase"}},"castSpell":{"spellId":{"spellId":11129}}}},
+		{"action":{"condition":{"variableRef":{"name":"BurnPhase"}},"castSpell":{"spellId":{"spellId":12472}}}},
+		{"action":{"condition":{"and":{"vals":[{"cmp":{"op":"OpLt","lhs":{"spellTimeToReady":{"spellId":{"spellId":12472}}},"rhs":{"const":{"val":"120"}}}},{"spellIsReady":{"spellId":{"spellId":11958}}},{"not":{"val":{"spellIsReady":{"spellId":{"spellId":12472}}}}}]}},"castSpell":{"spellId":{"spellId":11958}}}},
+		{"action":{"condition":{"variableRef":{"name":"ManaGem"}},"castSpell":{"spellId":{"itemId":22044}}}},
+		{"action":{"condition":{"and":{"vals":[{"cmp":{"op":"OpEq","lhs":{"auraNumStacks":{"auraId":{"itemId":22044}}},"rhs":{"const":{"val":"0"}}}},{"cmp":{"op":"OpLt","lhs":{"math":{"op":"OpAdd","lhs":{"currentMana":{}},"rhs":{"const":{"val":"1500"}}}},"rhs":{"maxMana":{}}}}]}},"castSpell":{"spellId":{"itemId":12662}}}},
+		{"action":{"condition":{"and":{"vals":[{"cmp":{"op":"OpLt","lhs":{"currentManaPercent":{}},"rhs":{"const":{"val":"5%"}}}},{"auraIsInactive":{"auraId":{"spellId":12472}}},{"auraIsInactive":{"auraId":{"spellId":11129}}}]}},"castSpell":{"spellId":{"spellId":12051}}}},
+		{"action":{"condition":{"and":{"vals":[{"or":{"vals":[{"cmp":{"op":"OpLt","lhs":{"auraNumStacks":{"sourceUnit":{"type":"CurrentTarget"},"auraId":{"spellId":12873}}},"rhs":{"const":{"val":"5"}}}},{"cmp":{"op":"OpLt","lhs":{"auraRemainingTime":{"sourceUnit":{"type":"CurrentTarget"},"auraId":{"spellId":12873}}},"rhs":{"const":{"val":"4s"}}}}]}},{"cmp":{"op":"OpGt","lhs":{"remainingTime":{}},"rhs":{"const":{"val":"10s"}}}}]}},"castSpell":{"spellId":{"spellId":27074}}}},
+		{"action":{"castSpell":{"spellId":{"spellId":27079}}}},
+		{"action":{"castSpell":{"spellId":{"spellId":27070}}}}
+	],
+	"valueVariables": [
+		{"name":"BurnPhase","value":{"or":{"vals":[{"isExecutePhase":{"threshold":"E20"}},{"cmp":{"op":"OpGt","lhs":{"remainingTime":{}},"rhs":{"const":{"val":"190s"}}}}]}}},
+		{"name":"ManaGem","value":{"or":{"vals":[{"and":{"vals":[{"auraIsKnown":{"auraId":{"spellId":37445}}},{"cmp":{"op":"OpGt","lhs":{"maxMana":{}},"rhs":{"math":{"op":"OpAdd","lhs":{"currentMana":{}},"rhs":{"math":{"op":"OpAdd","lhs":{"const":{"val":"3100"}},"rhs":{"currentManaRegen":{}}}}}}}}]}},{"and":{"vals":[{"not":{"val":{"auraIsKnown":{"auraId":{"spellId":37445}}}}},{"cmp":{"op":"OpGt","lhs":{"maxMana":{}},"rhs":{"math":{"op":"OpAdd","lhs":{"currentMana":{}},"rhs":{"math":{"op":"OpAdd","lhs":{"const":{"val":"2500"}},"rhs":{"currentManaRegen":{}}}}}}}}]}}]}}}
+	]
+}

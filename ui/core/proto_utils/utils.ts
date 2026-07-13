@@ -42,7 +42,16 @@ import {
 	RestorationDruid_Rotation,
 } from '../proto/druid.js';
 import { Hunter, Hunter_Rotation, Hunter_Options, HunterOptions, HunterTalents } from '../proto/hunter.js';
-import { Mage, Mage_Options, Mage_Rotation, MageOptions, MageTalents } from '../proto/mage.js';
+import {
+	FireMage,
+	FireMage_Options,
+	FireMage_Rotation,
+	Mage,
+	Mage_Options,
+	Mage_Rotation,
+	MageOptions,
+	MageTalents,
+} from '../proto/mage.js';
 import {
 	Blessings,
 	HolyPaladin,
@@ -144,7 +153,7 @@ class UnknownSpecOptions {
 
 export type DruidSpecs = Spec.SpecBalanceDruid | Spec.SpecFeralCatDruid | Spec.SpecFeralBearDruid | Spec.SpecRestorationDruid;
 export type HunterSpecs = Spec.SpecHunter;
-export type MageSpecs = Spec.SpecMage;
+export type MageSpecs = Spec.SpecMage | Spec.SpecFireMage;
 export type PaladinSpecs = Spec.SpecHolyPaladin | Spec.SpecRetributionPaladin | Spec.SpecProtectionPaladin;
 export type PriestSpecs = Spec.SpecPriest;
 export type RogueSpecs = Spec.SpecRogue;
@@ -220,7 +229,9 @@ export type SpecRotation<T extends Spec> =
 						: // Mage
 							T extends Spec.SpecMage
 							? Mage_Rotation
-							: // Paladin
+							: T extends Spec.SpecFireMage
+								? FireMage_Rotation
+								: // Paladin
 								T extends Spec.SpecHolyPaladin
 								? HolyPaladin_Rotation
 								: T extends Spec.SpecProtectionPaladin
@@ -329,7 +340,9 @@ export type SpecOptions<T extends Spec> =
 						: // Mage
 							T extends Spec.SpecMage
 							? Mage_Options
-							: // Paladin
+							: T extends Spec.SpecFireMage
+								? FireMage_Options
+								: // Paladin
 								T extends Spec.SpecHolyPaladin
 								? HolyPaladin_Options
 								: T extends Spec.SpecProtectionPaladin
@@ -376,7 +389,9 @@ export type SpecType<T extends Spec> =
 						: // Mage
 							T extends Spec.SpecMage
 							? Mage
-							: // Paladin
+							: T extends Spec.SpecFireMage
+								? FireMage
+								: // Paladin
 								T extends Spec.SpecHolyPaladin
 								? HolyPaladin
 								: T extends Spec.SpecProtectionPaladin
@@ -586,6 +601,27 @@ export const specTypeFunctions: Record<Spec, SpecTypeFunctions<any>> = {
 		optionsFromJson: obj => Mage_Options.fromJson(obj),
 		optionsFromPlayer: player =>
 			player.spec.oneofKind == 'mage' ? player.spec.mage.options || Mage_Options.create() : Mage_Options.create({ classOptions: {} }),
+	},
+	[Spec.SpecFireMage]: {
+		rotationCreate: () => FireMage_Rotation.create(),
+		rotationEquals: (a, b) => FireMage_Rotation.equals(a as FireMage_Rotation, b as FireMage_Rotation),
+		rotationCopy: a => FireMage_Rotation.clone(a as FireMage_Rotation),
+		rotationToJson: a => FireMage_Rotation.toJson(a as FireMage_Rotation),
+		rotationFromJson: obj => FireMage_Rotation.fromJson(obj),
+
+		talentsCreate: () => MageTalents.create(),
+		talentsEquals: (a, b) => MageTalents.equals(a as MageTalents, b as MageTalents),
+		talentsCopy: a => MageTalents.clone(a as MageTalents),
+		talentsToJson: a => MageTalents.toJson(a as MageTalents),
+		talentsFromJson: obj => MageTalents.fromJson(obj),
+
+		optionsCreate: () => FireMage_Options.create({ classOptions: {} }),
+		optionsEquals: (a, b) => FireMage_Options.equals(a as FireMage_Options, b as FireMage_Options),
+		optionsCopy: a => FireMage_Options.clone(a as FireMage_Options),
+		optionsToJson: a => FireMage_Options.toJson(a as FireMage_Options),
+		optionsFromJson: obj => FireMage_Options.fromJson(obj),
+		optionsFromPlayer: player =>
+			player.spec.oneofKind == 'fireMage' ? player.spec.fireMage.options || FireMage_Options.create() : FireMage_Options.create({ classOptions: {} }),
 	},
 	// Paladin
 	[Spec.SpecHolyPaladin]: {
@@ -911,6 +947,14 @@ export function withSpec<SpecType extends Spec>(spec: Spec, player: PlayerProto,
 				oneofKind: 'mage',
 				mage: Mage.create({
 					options: specOptions as Mage_Options,
+				}),
+			};
+			return copy;
+		case Spec.SpecFireMage:
+			copy.spec = {
+				oneofKind: 'fireMage',
+				fireMage: FireMage.create({
+					options: specOptions as FireMage_Options,
 				}),
 			};
 			return copy;

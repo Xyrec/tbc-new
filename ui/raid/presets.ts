@@ -8,6 +8,7 @@ import { FeralBearDruidSimUI } from '../druid/feralbear/sim';
 import { RestorationDruidSimUI } from '../druid/restoration/sim.js';
 import { HunterSimUI } from '../hunter/dps/sim.js';
 import { MageSimUI } from '../mage/arcane/sim.jsx';
+import { FireMageSimUI } from '../mage/fire/sim.jsx';
 import { HolyPaladinSimUI } from '../paladin/holy/sim.js';
 import { ProtectionPaladinSimUI } from '../paladin/protection/sim.js';
 import { RetributionPaladinSimUI } from '../paladin/retribution/sim.js';
@@ -30,6 +31,7 @@ export const specSimFactories: Partial<Record<Spec, (parentElem: HTMLElement, pl
 	[Spec.SpecHunter]: (parentElem: HTMLElement, player: Player<any>) => new HunterSimUI(parentElem, player),
 	// Mage
 	[Spec.SpecMage]: (parentElem: HTMLElement, player: Player<any>) => new MageSimUI(parentElem, player),
+	[Spec.SpecFireMage]: (parentElem: HTMLElement, player: Player<any>) => new FireMageSimUI(parentElem, player),
 	// Paladin
 	[Spec.SpecHolyPaladin]: (parentElem: HTMLElement, player: Player<any>) => new HolyPaladinSimUI(parentElem, player),
 	[Spec.SpecProtectionPaladin]: (parentElem: HTMLElement, player: Player<any>) => new ProtectionPaladinSimUI(parentElem, player),

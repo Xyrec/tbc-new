@@ -9,6 +9,7 @@ import (
 	_ "github.com/wowsims/tbc/sim/encounters"
 	"github.com/wowsims/tbc/sim/hunter"
 	arcaneMage "github.com/wowsims/tbc/sim/mage/arcane"
+	fireMage "github.com/wowsims/tbc/sim/mage/fire"
 	holyPaladin "github.com/wowsims/tbc/sim/paladin/holy"
 	protPaladin "github.com/wowsims/tbc/sim/paladin/protection"
 	"github.com/wowsims/tbc/sim/paladin/retribution"
@@ -38,6 +39,7 @@ func RegisterAll() {
 	hunter.RegisterHunter()
 
 	arcaneMage.RegisterArcaneMage()
+	fireMage.RegisterFireMage()
 
 	holyPaladin.RegisterHolyPaladin()
 	protPaladin.RegisterProtectionPaladin()
