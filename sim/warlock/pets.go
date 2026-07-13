@@ -69,8 +69,8 @@ func (warlock *Warlock) SimplePetStatInheritanceWithScale() core.PetStatInherita
 			stats.Intellect:        ownerStats[stats.Intellect] * 0.3,
 			stats.Armor:            ownerStats[stats.Armor] * 0.35,
 			stats.SpellPenetration: ownerStats[stats.SpellPenetration], // not 100% on this one
-			stats.SpellDamage:      max(ownerStats[stats.ShadowDamage], ownerStats[stats.FireDamage]) * 0.15,
-			stats.AttackPower:      max(ownerStats[stats.ShadowDamage], ownerStats[stats.FireDamage]) * 0.57,
+			stats.SpellDamage:      (ownerStats[stats.SpellDamage] + max(ownerStats[stats.ShadowDamage], ownerStats[stats.FireDamage])) * 0.15,
+			stats.AttackPower:      (ownerStats[stats.SpellDamage] + max(ownerStats[stats.ShadowDamage], ownerStats[stats.FireDamage])) * 0.57,
 			stats.ArcaneResistance: ownerStats[stats.ArcaneResistance] * resistScale,
 			stats.FireResistance:   ownerStats[stats.FireResistance] * resistScale,
 			stats.FrostResistance:  ownerStats[stats.FrostResistance] * resistScale,

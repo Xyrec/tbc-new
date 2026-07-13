@@ -48,7 +48,9 @@ func (mage *Mage) NewWaterElemental() *WaterElemental {
 		// Water elemental usually has about half the HP of the caster
 		return stats.Stats{
 			stats.Stamina:          ownerStats[stats.Stamina] * 0.3,
-			stats.SpellDamage:      ownerStats[stats.FrostDamage] * 0.33,
+			// Inherits from the owner's frost school total; school stats are
+			// stored as deltas on top of generic SpellDamage.
+			stats.SpellDamage:      (ownerStats[stats.SpellDamage] + ownerStats[stats.FrostDamage]) * 0.33,
 			stats.SpellHitRating:   ownerStats[stats.SpellHitRating],
 			stats.SpellPenetration: ownerStats[stats.SpellPenetration],
 			stats.SpellCritPercent: ownerStats[stats.SpellCritPercent],
