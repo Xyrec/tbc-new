@@ -178,5 +178,5 @@ const (
 	MageSpellInstantCast = MageSpellArcaneMissilesCast | MageSpellArcaneMissilesTick | MageSpellFireBlast | MageSpellArcaneExplosion | MageSpellPyroblastDot |
 		MageSpellCombustion | MageSpellConeOfCold | MageSpellDragonsBreath | MageSpellIceLance | MageSpellManaGems | MageSpellPresenceOfMind
 	MageSpellExtraResult = MageSpellArcaneMissilesTick | MageSpellBlizzard
-	FireSpellIgnitable   = MageSpellFireball | MageSpellScorch | MageSpellPyroblast
+	FireSpellIgnitable   = MageSpellFireball | MageSpellScorch | MageSpellPyroblast | MageSpellFireBlast | MageSpellBlastWave | MageSpellDragonsBreath | MageSpellFlamestrike
 )
