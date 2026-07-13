@@ -666,7 +666,10 @@ type IgniteConfig struct {
 }
 
 func RegisterIgniteEffect(unit *core.Unit, config IgniteConfig) *core.Spell {
-	spellFlags := core.SpellFlagIgnoreModifiers | core.SpellFlagNoSpellMods | core.SpellFlagNoOnCastComplete
+	// Attacker modifiers are already baked into the banked crit damage; target
+	// damage-taken modifiers apply again on each tick (TBC Ignite double-dips
+	// debuffs like Curse of Elements and Improved Scorch).
+	spellFlags := core.SpellFlagIgnoreAttackerModifiers | core.SpellFlagNoSpellMods | core.SpellFlagNoOnCastComplete
 
 	if config.DisableCastMetrics {
 		spellFlags |= core.SpellFlagPassiveSpell
@@ -714,13 +717,20 @@ func RegisterIgniteEffect(unit *core.Unit, config IgniteConfig) *core.Spell {
 		},
 	})
 
-	refreshIgnite := func(sim *core.Simulation, target *core.Unit, damagePerTick float64) {
+	refreshIgnite := func(sim *core.Simulation, target *core.Unit, damagePerTick float64, extendTick bool) {
 		// Cata Ignite
 		// 1st ignite application = 4s, split into 2 ticks (2s, 0s)
 		// Ignite refreshes: Duration = 4s + MODULO(remaining duration, 2), max 6s. Split damage over 3 ticks at 4s, 2s, 0s.
 		dot := igniteSpell.Dot(target)
-		dot.SnapshotBaseDamage = damagePerTick
 		igniteSpell.Cast(sim, target)
+		// Must be set after the cast: re-applying an active Dot deactivates it
+		// first, which zeroes SnapshotBaseDamage.
+		dot.SnapshotBaseDamage = damagePerTick
+		if extendTick {
+			// The rolled damage was split over BaseTickCount+1 ticks; extend the
+			// fresh application to match or a full tick of the pool is lost.
+			dot.AddTick()
+		}
 		dot.Aura.SetStacks(sim, int32(dot.SnapshotBaseDamage))
 	}
 
@@ -733,7 +743,10 @@ func RegisterIgniteEffect(unit *core.Unit, config IgniteConfig) *core.Spell {
 		outstandingDamage := dot.OutstandingDmg()
 		newDamage := config.DamageCalculator(result)
 		totalDamage := outstandingDamage + newDamage
-		newTickCount := dot.BaseTickCount + core.TernaryInt32(dot.IsActive(), 1, 0)
+		// TBC Ignite: the rolled bank is always paid out over the base 2 ticks
+		// of the refreshed 4s window.
+		wasActive := false
+		newTickCount := dot.BaseTickCount
 		damagePerTick := totalDamage / float64(newTickCount)
 
 		if config.IncludeAuraDelay {
@@ -777,13 +790,13 @@ func RegisterIgniteEffect(unit *core.Unit, config IgniteConfig) *core.Spell {
 				Priority: core.ActionPriorityDOT,
 
 				OnAction: func(_ *core.Simulation) {
-					refreshIgnite(sim, target, damagePerTick)
+					refreshIgnite(sim, target, damagePerTick, wasActive)
 				},
 			})
 
 			sim.AddPendingAction(scheduledRefresh)
 		} else {
-			refreshIgnite(sim, target, damagePerTick)
+			refreshIgnite(sim, target, damagePerTick, wasActive)
 		}
 	}
 

@@ -21,7 +21,9 @@
 			"hunter": ""
 		},
 		"mage": {
-			"mage": ""
+			"arcane": "Arcane",
+			"fire": "Fire",
+			"frost": "Frost"
 		},
 		"paladin": {
 			"holy": "Holy",

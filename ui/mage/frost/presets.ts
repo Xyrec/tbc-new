@@ -10,18 +10,17 @@ import {
 	TristateEffect,
 	Profession,
 	Drums,
-	Spec,
 } from '../../core/proto/common';
 import { defaultImprovedShadowBoltSettings } from '../../core/proto_utils/utils';
 import { Stats } from '../../core/proto_utils/stats';
 import { SavedTalents } from '../../core/proto/ui';
-import { Mage_Rotation, MageArmor, Mage_Options as MageOptions } from '../../core/proto/mage';
+import { MageArmor, FrostMage_Options as FrostMageOptions } from '../../core/proto/mage';
 import BlankAPL from './apls/blank.apl.json';
 import BlankGear from './gear_sets/blank.gear.json';
-import ArcaneApl from './apls/arcane.apl.json';
-import PreBISArcaneGear from './gear_sets/preBisArcane.gear.json';
-import P1BISArcaneGear from './gear_sets/p1Arcane.gear.json';
-import P2BISArcaneGear from './gear_sets/p2Arcane.gear.json';
+import FrostApl from './apls/frost.apl.json';
+import PreBISFrostGear from './gear_sets/preBisFrost.gear.json';
+import P1FrostGear from './gear_sets/p1Frost.gear.json';
+import P2FrostGear from './gear_sets/p2Frost.gear.json';
 import { Phase } from '../../core/constants/other';
 import { APLRotation_Type } from '../../core/proto/apl';
 
@@ -30,66 +29,55 @@ import { APLRotation_Type } from '../../core/proto/apl';
 // keep them in a separate file.
 
 export const BLANK_APL = PresetUtils.makePresetAPLRotation('Blank', BlankAPL);
-export const PREBIS_ARCANE = PresetUtils.makePresetGear('Arcane PreRaid - BIS', PreBISArcaneGear, { phase: Phase.Phase1 });
-export const P1_BIS_ARCANE = PresetUtils.makePresetGear('Arcane - BIS', P1BISArcaneGear, { phase: Phase.Phase1 });
-export const P2_BIS_ARCANE = PresetUtils.makePresetGear('Arcane - BIS', P2BISArcaneGear, { phase: Phase.Phase2 });
-//export const P3_BIS_ARCANE = PresetUtils.makePresetGear('Arcane P3 - BIS', P3BISArcaneGear);
+export const PREBIS_FROST = PresetUtils.makePresetGear('Frost PreRaid - BIS', PreBISFrostGear, { phase: Phase.Phase1 });
+export const P1_BIS_FROST = PresetUtils.makePresetGear('Frost - BIS', P1FrostGear, { phase: Phase.Phase1 });
+export const P2_BIS_FROST = PresetUtils.makePresetGear('Frost - BIS', P2FrostGear, { phase: Phase.Phase2 });
 
-export const ARCANE_TALENTS = PresetUtils.makePresetTalents('Arcane', SavedTalents.create({ talentsString: '2500052300030150330125--053500031003001' }));
-export const ROTATION_PRESET_ARCANE = PresetUtils.makePresetAPLRotation('Arcane', ArcaneApl);
+export const FROST_TALENTS = PresetUtils.makePresetTalents('Frost', SavedTalents.create({ talentsString: '230005--0535020310235310250551' }));
+export const ROTATION_PRESET_FROST = PresetUtils.makePresetAPLRotation('Frost', FrostApl);
 export const BLANK_GEARSET = PresetUtils.makePresetGear('Blank', BlankGear);
-
-export const ArcaneMageSimpleRotation = Mage_Rotation.create({
-	conserveStart: 20,
-	conserveEnd: 30,
-	delayMajorCDs: 10,
-});
-
-export const APL_ARCANE_SIMPLE = PresetUtils.makePresetSimpleRotation('Arcane Simple', Spec.SpecMage, ArcaneMageSimpleRotation);
 
 // Preset options for EP weights
 export const P1_EP_PRESET = PresetUtils.makePresetEpWeights(
-	'P1 - Arcane',
+	'P1 - Frost',
 	Stats.fromMap(
 		{
-			[Stat.StatMana]: 0.03,
-			[Stat.StatIntellect]: 1.52,
-			[Stat.StatSpirit]: 1,
+			[Stat.StatMana]: 0,
+			[Stat.StatIntellect]: 0.23,
+			[Stat.StatSpirit]: 0.11,
 			[Stat.StatSpellDamage]: 1,
-			[Stat.StatArcaneDamage]: 0.92,
-			[Stat.StatFrostDamage]: 0.08,
-			[Stat.StatSpellHitRating]: 2.36,
-			[Stat.StatSpellCritRating]: 0.83,
-			[Stat.StatSpellHasteRating]: 0.53,
+			[Stat.StatFrostDamage]: 1,
+			[Stat.StatFireDamage]: 0,
+			[Stat.StatSpellHitRating]: 1.57,
+			[Stat.StatSpellCritRating]: 0.75,
+			[Stat.StatSpellHasteRating]: 1.18,
 			[Stat.StatSpellPenetration]: 0,
-			[Stat.StatMP5]: 0.56,
+			[Stat.StatMP5]: 0.01,
 		},
 		{
-			[PseudoStat.PseudoStatSchoolHitPercentArcane]: 2.14,
-			[PseudoStat.PseudoStatSchoolHitPercentFrost]: 0.15,
+			[PseudoStat.PseudoStatSchoolHitPercentFrost]: 1.57,
 		},
 	),
 );
 
 export const P2_EP_PRESET = PresetUtils.makePresetEpWeights(
-	'P2 - Arcane',
+	'P2 - Frost',
 	Stats.fromMap(
 		{
-			[Stat.StatMana]: 0.03,
-			[Stat.StatIntellect]: 1.31,
-			[Stat.StatSpirit]: 0.9,
+			[Stat.StatMana]: 0,
+			[Stat.StatIntellect]: 0.22,
+			[Stat.StatSpirit]: 0.11,
 			[Stat.StatSpellDamage]: 1,
-			[Stat.StatArcaneDamage]: 0.9,
-			[Stat.StatFrostDamage]: 0.1,
-			[Stat.StatSpellHitRating]: 2.3,
-			[Stat.StatSpellCritRating]: 0.77,
-			[Stat.StatSpellHasteRating]: 0.55,
+			[Stat.StatFrostDamage]: 1,
+			[Stat.StatFireDamage]: 0,
+			[Stat.StatSpellHitRating]: 1.4,
+			[Stat.StatSpellCritRating]: 0.73,
+			[Stat.StatSpellHasteRating]: 1.22,
 			[Stat.StatSpellPenetration]: 0,
-			[Stat.StatMP5]: 0.48,
+			[Stat.StatMP5]: 0.02,
 		},
 		{
-			[PseudoStat.PseudoStatSchoolHitPercentArcane]: 2.09,
-			[PseudoStat.PseudoStatSchoolHitPercentFrost]: 0.2,
+			[PseudoStat.PseudoStatSchoolHitPercentFrost]: 1.4,
 		},
 	),
 );
@@ -101,9 +89,9 @@ export const Talents = {
 	}),
 };
 
-export const DefaultOptions = MageOptions.create({
+export const DefaultOptions = FrostMageOptions.create({
 	classOptions: {
-		defaultMageArmor: MageArmor.MageArmorMageArmor,
+		defaultMageArmor: MageArmor.MageArmorMoltenArmor,
 	},
 });
 
@@ -134,6 +122,7 @@ export const DefaultPartyBuffs = PartyBuffs.create({
 	manaSpringTotem: 2,
 	manaTideTotems: 1,
 	wrathOfAirTotem: 1,
+	totemOfWrath: 1,
 	drums: Drums.LesserDrumsOfBattle,
 });
 
@@ -178,24 +167,24 @@ export const P2_PLAYER_SETTINGS: PresetUtils.PresetSettings = {
 	},
 };
 
-export const P1_PRESET_BUILD_ARC = PresetUtils.makePresetBuild('P1', {
-	group: 'Arcane',
+export const P1_PRESET_BUILD_FROST = PresetUtils.makePresetBuild('P1', {
+	group: 'Frost',
 	phase: Phase.Phase1,
-	gear: P1_BIS_ARCANE,
-	talents: ARCANE_TALENTS,
+	gear: P1_BIS_FROST,
+	talents: FROST_TALENTS,
 	epWeights: P1_EP_PRESET,
-	rotationType: APLRotation_Type.TypeSimple,
-	rotation: APL_ARCANE_SIMPLE,
+	rotationType: APLRotation_Type.TypeAPL,
+	rotation: ROTATION_PRESET_FROST,
 	settings: P1_PLAYER_SETTINGS,
 });
 
-export const P2_PRESET_BUILD_ARC = PresetUtils.makePresetBuild('P2', {
-	group: 'Arcane',
+export const P2_PRESET_BUILD_FROST = PresetUtils.makePresetBuild('P2', {
+	group: 'Frost',
 	phase: Phase.Phase2,
-	gear: P2_BIS_ARCANE,
-	talents: ARCANE_TALENTS,
+	gear: P2_BIS_FROST,
+	talents: FROST_TALENTS,
 	epWeights: P2_EP_PRESET,
-	rotationType: APLRotation_Type.TypeSimple,
-	rotation: APL_ARCANE_SIMPLE,
+	rotationType: APLRotation_Type.TypeAPL,
+	rotation: ROTATION_PRESET_FROST,
 	settings: P2_PLAYER_SETTINGS,
 });

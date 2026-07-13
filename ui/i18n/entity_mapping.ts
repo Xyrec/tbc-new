@@ -227,7 +227,9 @@ export const specI18nKeys: Record<Spec, string> = {
 	// Hunter
 	[Spec.SpecHunter]: 'hunter',
 	// Mage
-	[Spec.SpecMage]: 'mage',
+	[Spec.SpecMage]: 'arcane',
+	[Spec.SpecFireMage]: 'fire',
+	[Spec.SpecFrostMage]: 'frost',
 	// Paladin
 	[Spec.SpecHolyPaladin]: 'holy',
 	[Spec.SpecProtectionPaladin]: 'protection',

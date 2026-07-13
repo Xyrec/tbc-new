@@ -1,4 +1,4 @@
-package mage
+package frost
 
 import (
 	"testing"
@@ -10,28 +10,28 @@ import (
 )
 
 func init() {
-	RegisterMage()
+	RegisterFrostMage()
 	common.RegisterAllEffects()
 }
 
-func TestArcane(t *testing.T) {
+func TestFrost(t *testing.T) {
 	core.RunTestSuite(t, t.Name(), core.FullCharacterTestSuiteGenerator([]core.CharacterSuiteConfig{
 		{
 			Class:      proto.Class_ClassMage,
 			Race:       proto.Race_RaceTroll,
 			OtherRaces: []proto.Race{proto.Race_RaceOrc},
-			SpecOptions: core.SpecOptionsCombo{Label: "Arcane", SpecOptions: &proto.Player_Mage{
-				Mage: &proto.Mage{
-					Options: &proto.Mage_Options{
+			SpecOptions: core.SpecOptionsCombo{Label: "Frost", SpecOptions: &proto.Player_FrostMage{
+				FrostMage: &proto.FrostMage{
+					Options: &proto.FrostMage_Options{
 						ClassOptions: &proto.MageOptions{
-							DefaultMageArmor: proto.MageArmor_MageArmorMageArmor,
+							DefaultMageArmor: proto.MageArmor_MageArmorMoltenArmor,
 						},
 					},
 				},
 			}},
-			GearSet:  core.GetGearSet("../../ui/mage/dps/gear_sets", "p1Arcane"),
-			Talents:  "2500052300030150330125--053500031003001",
-			Rotation: core.GetAplRotation("../../ui/mage/dps/apls", "arcane"),
+			GearSet:  core.GetGearSet("../../../ui/mage/frost/gear_sets", "p2Frost"),
+			Talents:  "230005--0535020310235310250551",
+			Rotation: core.GetAplRotation("../../../ui/mage/frost/apls", "frost"),
 			ItemFilter: core.ItemFilter{
 				WeaponTypes: []proto.WeaponType{
 					proto.WeaponType_WeaponTypeDagger,

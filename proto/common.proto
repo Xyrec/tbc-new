@@ -50,6 +50,8 @@ enum Spec {
 	SpecHunter = 5;
 
 	SpecMage = 6;
+	SpecFireMage = 18;
+	SpecFrostMage = 19;
 
 	SpecHolyPaladin = 7;
 	SpecProtectionPaladin = 8;

@@ -103,3 +103,24 @@ message Mage {
 	}
 	Options options = 1;
 }
+
+message FireMage {
+	message Rotation {
+		bool weaveFireBlast = 1;
+	}
+
+	message Options {
+		MageOptions class_options = 1;
+	}
+	Options options = 1;
+}
+
+message FrostMage {
+	message Rotation {
+	}
+
+	message Options {
+		MageOptions class_options = 1;
+	}
+	Options options = 1;
+}

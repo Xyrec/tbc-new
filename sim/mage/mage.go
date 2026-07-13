@@ -50,23 +50,6 @@ func (mage *Mage) GetMage() *Mage {
 	return mage
 }
 
-func RegisterMage() {
-	core.RegisterAgentFactory(
-		proto.Player_Mage{},
-		proto.Spec_SpecMage,
-		func(character *core.Character, options *proto.Player, _ *proto.Raid) core.Agent {
-			return NewMage(character, options)
-		},
-		func(player *proto.Player, spec interface{}) {
-			playerSpec, ok := spec.(*proto.Player_Mage)
-			if !ok {
-				panic("Invalid spec value for Survival Hunter!")
-			}
-			player.Spec = playerSpec
-		},
-	)
-}
-
 func (mage *Mage) AddRaidBuffs(raidBuffs *proto.RaidBuffs) {
 	raidBuffs.ArcaneBrilliance = true
 }
@@ -124,12 +107,11 @@ func (mage *Mage) Reset(sim *core.Simulation) {
 func (mage *Mage) OnEncounterStart(sim *core.Simulation) {
 }
 
-func NewMage(character *core.Character, options *proto.Player) *Mage {
-	mageOptions := options.GetMage().Options.ClassOptions
+func NewMage(character *core.Character, options *proto.Player, classOptions *proto.MageOptions) *Mage {
 	mage := &Mage{
 		Character: *character,
 		Talents:   &proto.MageTalents{},
-		Options:   mageOptions,
+		Options:   classOptions,
 	}
 
 	core.FillTalentsProto(mage.Talents.ProtoReflect(), options.TalentsString, TalentTreeSizes)
@@ -196,5 +178,5 @@ const (
 	MageSpellInstantCast = MageSpellArcaneMissilesCast | MageSpellArcaneMissilesTick | MageSpellFireBlast | MageSpellArcaneExplosion | MageSpellPyroblastDot |
 		MageSpellCombustion | MageSpellConeOfCold | MageSpellDragonsBreath | MageSpellIceLance | MageSpellManaGems | MageSpellPresenceOfMind
 	MageSpellExtraResult = MageSpellArcaneMissilesTick | MageSpellBlizzard
-	FireSpellIgnitable   = MageSpellFireball | MageSpellScorch | MageSpellPyroblast
+	FireSpellIgnitable   = MageSpellFireball | MageSpellScorch | MageSpellPyroblast | MageSpellFireBlast | MageSpellBlastWave | MageSpellDragonsBreath | MageSpellFlamestrike
 )
