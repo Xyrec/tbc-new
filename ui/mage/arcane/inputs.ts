@@ -1,5 +1,6 @@
 import * as InputHelpers from '../../core/components/input_helpers';
 import { MageArmor } from '../../core/proto/mage';
+import { Spec } from '../../core/proto/common';
 import { ActionId } from '../../core/proto_utils/action_id';
 import { MageSpecs } from '../../core/proto_utils/utils';
 
@@ -18,7 +19,7 @@ export const MageArmorInputs = <SpecType extends MageSpecs>() =>
 
 export const ArcaneMageRotationConfig = {
 	inputs: [
-		InputHelpers.makeRotationNumberInput<MageSpecs>({
+		InputHelpers.makeRotationNumberInput<Spec.SpecMage>({
 			fieldName: 'conserveStart',
 			label: 'Start Conserve Rotation %',
 			labelTooltip: 'Starts the conserve mana rotation at %',
@@ -26,7 +27,7 @@ export const ArcaneMageRotationConfig = {
 			getValue: player => player.getSimpleRotation().conserveStart,
 			positive: true,
 		}),
-		InputHelpers.makeRotationNumberInput<MageSpecs>({
+		InputHelpers.makeRotationNumberInput<Spec.SpecMage>({
 			fieldName: 'conserveEnd',
 			label: 'End Conserve Rotation %',
 			labelTooltip:
@@ -35,7 +36,7 @@ export const ArcaneMageRotationConfig = {
 			getValue: player => player.getSimpleRotation().conserveEnd,
 			positive: true,
 		}),
-		InputHelpers.makeRotationNumberInput<MageSpecs>({
+		InputHelpers.makeRotationNumberInput<Spec.SpecMage>({
 			fieldName: 'delayMajorCDs',
 			label: 'Delay Major CDs',
 			labelTooltip: 'Delays the first automatic use of major cooldowns (e.g. Bloodlust, Drums) by the specified number of seconds.',

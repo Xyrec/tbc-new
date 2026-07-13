@@ -11,7 +11,7 @@ PAGE_INDECES := ui/druid/balance/index.html \
 				ui/druid/feralbear/index.html \
 				ui/druid/restoration/index.html \
 				ui/hunter/dps/index.html \
-				ui/mage/dps/index.html \
+				ui/mage/arcane/index.html \
 				ui/paladin/holy/index.html \
 				ui/paladin/protection/index.html \
 				ui/paladin/retribution/index.html \

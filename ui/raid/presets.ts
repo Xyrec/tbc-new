@@ -7,7 +7,7 @@ import { FeralCatDruidSimUI } from '../druid/feralcat/sim.js';
 import { FeralBearDruidSimUI } from '../druid/feralbear/sim';
 import { RestorationDruidSimUI } from '../druid/restoration/sim.js';
 import { HunterSimUI } from '../hunter/dps/sim.js';
-import { MageSimUI } from '../mage/dps/sim.jsx';
+import { MageSimUI } from '../mage/arcane/sim.jsx';
 import { HolyPaladinSimUI } from '../paladin/holy/sim.js';
 import { ProtectionPaladinSimUI } from '../paladin/protection/sim.js';
 import { RetributionPaladinSimUI } from '../paladin/retribution/sim.js';

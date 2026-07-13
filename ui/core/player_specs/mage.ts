@@ -7,8 +7,8 @@ export class Mage extends PlayerSpec<Spec.SpecMage> {
 	static specIndex = 0;
 	static specID = Spec.SpecMage as Spec.SpecMage;
 	static classID = Class.ClassMage as Class.ClassMage;
-	static friendlyName = 'Mage';
-	static simLink = getSpecSiteUrl('mage', 'dps');
+	static friendlyName = 'Arcane';
+	static simLink = getSpecSiteUrl('mage', 'arcane');
 
 	static isTankSpec = false;
 	static isHealingSpec = false;
@@ -31,10 +31,11 @@ export class Mage extends PlayerSpec<Spec.SpecMage> {
 	readonly canDualWield = Mage.canDualWield;
 
 	static getIcon = (size: IconSize): string => {
-		return `https://wow.zamimg.com/images/wow/icons/${size}/class_mage.jpg`;
+		return `https://wow.zamimg.com/images/wow/icons/${size}/spell_holy_magicalsentry.jpg`;
 	};
 
 	getIcon = (size: IconSize): string => {
 		return Mage.getIcon(size);
 	};
 }
+

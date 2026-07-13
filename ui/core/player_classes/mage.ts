@@ -9,7 +9,7 @@ export class Mage extends PlayerClass<Class.ClassMage> {
 	static friendlyName = 'Mage';
 	static hexColor = '#69ccf0';
 	static specs: Record<string, PlayerSpec<MageSpecs>> = {
-		[Mage.friendlyName]: MageSpec,
+		[MageSpec.friendlyName]: MageSpec,
 	};
 	static races: Race[] = [
 		// [H]
